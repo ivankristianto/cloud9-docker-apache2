@@ -43,6 +43,7 @@ WORKDIR /opt/
 git clone https://github.com/julianbrowne/apache-anywhere.git
 COPY conf/apache bin/apache
 COPY conf/httpd.conf config/httpd.conf
+COPY conf/Apache.run /workspace/.c9/runners/Apache.run
 
 # ------------------------------------------------------------------------------
 # Add gulp
