@@ -10,31 +10,38 @@ This repository contains Dockerfile of Cloud9 IDE for Docker's automated build p
 
 ## Install Docker.
 
-Download automated build from public Docker Hub Registry: docker pull kdelfour/cloud9-docker
+Download automated build from public Docker Hub Registry: docker pull ivankristianto/cloud9-docker-apache2
 
-(alternatively, you can build an image from Dockerfile: docker build -t="kdelfour/cloud9-docker" github.com/kdelfour/cloud9-docker)
+(alternatively, you can build an image from Dockerfile: docker build -t="ivankristianto/cloud9-docker-apache2" github.com/ivankristianto/cloud9-docker-apache2)
 
 ## Usage
 
-    docker run -it -d -p 80:80 kdelfour/cloud9-docker
+    docker run -it -d -p 80:80 --net=host ivankristianto/cloud9-docker-apache2
     
 You can add a workspace as a volume directory with the argument *-v /your-path/workspace/:/workspace/* like this :
 
-    docker run -it -d -p 80:80 -v /your-path/workspace/:/workspace/ kdelfour/cloud9-docker
+    docker run -it -d -p 80:80 --net=host -v /your-path/workspace/:/workspace/ ivankristianto/cloud9-docker-apache2
     
 ## Build and run with custom config directory
 
 Get the latest version from github
 
-    git clone https://github.com/kdelfour/cloud9-docker
-    cd cloud9-docker/
+    git clone https://github.com/ivankristianto/cloud9-docker-apache2
+    cd cloud9-docker-apache2/
 
 Build it
 
-    sudo docker build --force-rm=true --tag="$USER/cloud9-docker:latest" .
+    sudo docker build --force-rm=true --tag="$USER/cloud9-docker-apache2:latest" .
     
 And run
 
-    sudo docker run -d -p 80:80 -v /your-path/workspace/:/workspace/ $USER/cloud9-docker:latest
-    
+    sudo docker run -d -p 80:80 --net=host -v /your-path/workspace/:/workspace/ $USER/cloud9-docker-apache2:latest
+
+## Library
+
+* Apache
+* PHP5
+* Gulp
+* Composer
+
 Enjoy !!    

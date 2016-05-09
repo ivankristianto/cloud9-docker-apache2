@@ -43,9 +43,10 @@ RUN service apache2 stop
 
 WORKDIR /opt/ 
 RUN git clone https://github.com/julianbrowne/apache-anywhere.git
-COPY conf/apache bin/apache
-COPY conf/httpd.conf config/httpd.conf
+COPY conf/apache apache-anywhere/bin/apache
+COPY conf/httpd.conf apache-anywhere/config/httpd.conf
 COPY conf/Apache.run /workspace/.c9/runners/Apache.run
+RUN chmod +x -R apache-anywhere
 
 # ------------------------------------------------------------------------------
 # Add gulp
