@@ -36,22 +36,24 @@ VOLUME /workspace
 # ------------------------------------------------------------------------------
 # Add php5 and apache
 
-apt-get -y install php5 apache2 libapache2-mod-php5 php5-mcrypt vim curl php5-cli
-a2enmod headers; a2enmod dir; service apache2 stop
+RUN apt-get -y install php5 apache2 libapache2-mod-php5 php5-mcrypt vim curl php5-cli
+RUN a2enmod headers; 
+RUN a2enmod dir; 
+RUN service apache2 stop
 
 WORKDIR /opt/ 
-git clone https://github.com/julianbrowne/apache-anywhere.git
+RUN git clone https://github.com/julianbrowne/apache-anywhere.git
 COPY conf/apache bin/apache
 COPY conf/httpd.conf config/httpd.conf
 COPY conf/Apache.run /workspace/.c9/runners/Apache.run
 
 # ------------------------------------------------------------------------------
 # Add gulp
-npm install -g gulp
+RUN npm install -g gulp
 
 # ------------------------------------------------------------------------------
 # Add composer
-curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+RUN curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
 
 # ------------------------------------------------------------------------------
 # Clean up APT when done.
