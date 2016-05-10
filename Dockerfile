@@ -36,10 +36,8 @@ VOLUME /workspace
 # ------------------------------------------------------------------------------
 # Add php5 and apache
 
-RUN apt-get -y install php5 apache2 libapache2-mod-php5 php5-mcrypt vim curl php5-cli
-RUN a2enmod headers; 
-RUN a2enmod dir; 
-RUN service apache2 stop
+RUN apt-get -y install php5 apache2 libapache2-mod-php5 php5-mcrypt vim curl php5-cli php5-curl
+RUN a2enmod headers; a2enmod dir; service apache2 stop
 
 WORKDIR /opt/ 
 RUN git clone https://github.com/julianbrowne/apache-anywhere.git
