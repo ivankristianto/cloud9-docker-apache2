@@ -1,7 +1,12 @@
+[![](https://imagelayers.io/badge/ivankristianto/cloud9-docker-apache2:latest.svg)](https://imagelayers.io/?images=ivankristianto/cloud9-docker-apache2:latest 'Get your own badge on imagelayers.io')
+[![Docker Pulls](https://img.shields.io/docker/pulls/ivankristianto/cloud9-docker-apache2.svg?maxAge=2592000)]()
+
 Cloud9 v3 Dockerfile
 =============
 
 This repository contains Dockerfile of Cloud9 IDE for Docker's automated build published to the public Docker Hub Registry.
+
+![Alt text](screenshot.jpg "Cloud9 Workspaces")
 
 # About Cloud9 IDE
 [Cloud9 IDE](https://c9.io/)
