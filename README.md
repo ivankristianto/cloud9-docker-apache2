@@ -45,6 +45,22 @@ And run
 
     sudo docker run -d -p 80:80 --net=host -v /your-path/workspace/:/workspace/ $USER/cloud9-docker-apache2:latest
 
+## Workaround
+If your server has ConfigServer Firewall
+
+To resolve this create the following in `/etc/csf/csfpre.sh`
+
+	iptables -t nat -N DOCKER
+	iptables -t nat -A PREROUTING -m addrtype --dst-type LOCAL -j DOCKER
+	iptables -t nat -A OUTPUT ! -d 127.0.0.0/8 -m addrtype --dst-type LOCAL -j DOCKER
+	iptables -t nat -A POSTROUTING -s 172.17.0.0/16 ! -o docker0 -j MASQUERADE
+
+	iptables -t filter -N DOCKER
+	iptables -t filter -A FORWARD -o docker0 -j DOCKER
+	iptables -t filter -A FORWARD -o docker0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+	iptables -t filter -A FORWARD -i docker0 ! -o docker0 -j ACCEPT
+	iptables -t filter -A FORWARD -i docker0 -o docker0 -j ACCEPT
+
 ## Library
 
 * Apache
